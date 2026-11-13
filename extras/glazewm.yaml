@@ -1,0 +1,19 @@
+# GlazeWM snippets for claude-theme.ps1 (merge into ~/.glzr/glazewm/config.yaml).
+
+window_rules:
+  # Leave Claude's DevTools alone: claude-theme.ps1 opens it hidden to re-apply the theme.
+  - commands: ['ignore']
+    match:
+      - window_process: { equals: 'claude' }
+        window_title: { regex: '^Developer Tools' }
+
+  # If you move Claude to a workspace, exclude DevTools (and the blank startup window) from that rule.
+  # - commands: ['move --workspace 4']
+  #   match:
+  #     - window_process: { regex: '^claude$' }
+  #       window_title: { not_regex: '^Developer Tools|^$' }
+
+keybindings:
+  # Alt+Shift+Y: re-apply the theme by hand (e.g. after the watcher has given up for this session).
+  - commands: ['shell-exec conhost.exe --headless powershell.exe -NoProfile -ExecutionPolicy Bypass -STA -File %USERPROFILE%/bin/claude-theme.ps1']
+    bindings: ['alt+shift+y']

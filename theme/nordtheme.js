@@ -1,0 +1,226 @@
+// Claude desktop theme, made with Claude Desktop Theme Tuner.
+// Paste into the Claude app's DevTools: Sources > Snippets > + New snippet, run with Cmd+Enter.
+(() => {
+  const ID = "claude-theme-tuner-theme";
+  const css = `/* Claude desktop theme (light: stock, dark: Nord), made with Claude Desktop Theme Tuner.
+ * Overrides the app's own design-system variables, the approach of the Clay
+ * theme by Maxime Bories (MIT). */
+
+/* ---------- font: JetBrains Mono everywhere (both modes) ---------- */
+:root, .cds-root {
+  --font-sans: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+  --font-serif: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+  --font-mono: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+  --font-ui: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+  --font-user-message: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+  --font-claude-response: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+}
+/* Catch text that hard-codes a family; math (KaTeX) keeps its own fonts. */
+html body *:not(.katex):not(.katex *) {
+  font-family: "JetBrains Mono", "JetBrainsMono Nerd Font", ui-monospace, monospace !important;
+  font-feature-settings: "calt" 1, "liga" 1;
+}
+/* ---------- code: clearer inline code and code blocks (Nord, dark mode) ---------- */
+html[data-mode="dark"] :not(pre) > code,
+html[data-mode="dark"] .cds-root :not(pre) > code {
+  background: #434c5e !important;          /* nord2, a clear step up from the #2e3440 page */
+  border: 1px solid #4c566a !important;    /* nord3 */
+  color: #8fbcbb !important;               /* nord7 */
+  border-radius: 4px !important;
+  padding: 0.05em 0.35em !important;
+}
+html[data-mode="dark"] pre,
+html[data-mode="dark"] pre > code,
+html[data-mode="dark"] .code-block__code {
+  background: #242933 !important;          /* darker than the page, so blocks stand out */
+}
+html[data-mode="dark"] pre { border: 1px solid #3b4252 !important; border-radius: 6px !important; }
+@media (prefers-color-scheme: dark) {
+  html[data-mode="system"] :not(pre) > code {
+    background: #434c5e !important; border: 1px solid #4c566a !important; color: #8fbcbb !important;
+    border-radius: 4px !important; padding: 0.05em 0.35em !important;
+  }
+  html[data-mode="system"] pre, html[data-mode="system"] pre > code, html[data-mode="system"] .code-block__code { background: #242933 !important; }
+  html[data-mode="system"] pre { border: 1px solid #3b4252 !important; border-radius: 6px !important; }
+}
+/* ---------- dark: Nord ---------- */
+html.cds-root[data-mode="dark"],
+html[data-mode="dark"] .cds-root:not([data-mode="light"]):not([data-mode="system"]) {
+  --cds-surface-0: #272c36 !important;
+  --cds-surface-1: #2e3440 !important;
+  --cds-surface-2: #2e3440 !important;
+  --cds-surface-3: #3b4252 !important;
+  --cds-surface-panel: #2e3440 !important;
+  --cds-surface-popover: #3b4252 !important;
+  --cds-page-bg: #2e3440 !important;
+  --background-color-page: #2e3440 !important;
+  --cds-bg-neutral: rgba(76, 86, 106, 0.08) !important;
+  --cds-bg-neutral-hover: rgba(76, 86, 106, 0.14) !important;
+  --cds-bg-user-message: rgba(136, 192, 208, 0.1) !important;
+  --cds-text-primary: #eceff4 !important;
+  --cds-text-secondary: #bdc3ce !important;
+  --cds-text-muted: #a7b1c2 !important;
+  --cds-border: rgba(76, 86, 106, 0.22) !important;
+  --cds-border-strong: rgba(76, 86, 106, 0.4) !important;
+  --cds-border-stronger: rgba(76, 86, 106, 0.4) !important;
+  --cds-role-accent-400: #88c0d0 !important;
+  --cds-role-accent-450: #8fbcbb !important;
+  --cds-role-accent-600: #88c0d0 !important;
+  --cds-role-accent-on: #2e3440 !important;
+  --cds-on-accent: #2e3440 !important;
+  --cds-text-accent: #88c0d0 !important;
+  --cds-bg-accent: rgba(136, 192, 208, 0.14) !important;
+  --cds-bg-accent-muted: rgba(136, 192, 208, 0.14) !important;
+  --cds-bg-accent-chip: rgba(136, 192, 208, 0.14) !important;
+  --cds-border-accent: #88c0d0 !important;
+  --cds-bg-highlight: rgba(136, 192, 208, 0.14) !important;
+  --cds-fill-field: #2e3440 !important;
+  --cds-alpha-1: rgba(136, 192, 208, 0.07) !important;
+  --cds-alpha-2: rgba(136, 192, 208, 0.12) !important;
+  --cds-alpha-3: rgba(136, 192, 208, 0.18) !important;
+  --cds-fill-ghost-hover: rgba(67, 76, 94, 0.27) !important;
+  --cds-fill-ghost-selected: rgba(67, 76, 94, 0.55) !important;
+  --cds-fill-secondary-hover: rgba(67, 76, 94, 0.27) !important;
+  --cds-fizzy-lake-color-sidebar: #272c36 !important;
+  --cds-fizzy-lake-color-card-hover: #3b4252 !important;
+  --cds-fizzy-lake-color-card-link: rgba(136, 192, 208, 0.04) !important;
+  --cds-fizzy-lake-color-card-link-hover: rgba(136, 192, 208, 0.08) !important;
+  --cds-fizzy-lake-color-card-link-pressed: rgba(136, 192, 208, 0.12) !important;
+  --cds-fizzy-lake-color-selected-hover: rgba(67, 76, 94, 0.7) !important;
+  --bg-000: 220.0 16.4% 21.6% !important;
+  --bg-100: 220.0 16.4% 21.6% !important;
+  --bg-200: 221.7 16.3% 27.6% !important;
+  --bg-300: 220.0 16.1% 18.2% !important;
+  --bg-400: 220.0 16.8% 31.6% !important;
+  --bg-500: 219.2 15.1% 33.7% !important;
+  --text-000: 217.5 26.7% 94.1% !important;
+  --text-100: 217.5 26.7% 94.1% !important;
+  --text-200: 218.8 14.8% 77.5% !important;
+  --text-300: 218.8 14.8% 77.5% !important;
+  --border-300: 219.2 15.1% 33.7% !important;
+  accent-color: #88c0d0 !important;
+}
+html[data-mode="dark"] .dframe-root,
+html[data-mode="dark"] .dframe-root .dframe-sidebar,
+html[data-mode="dark"] .dframe-root[data-variant] .dframe-sidebar,
+html[data-mode="dark"] .dframe-root .dframe-card,
+html[data-mode="dark"] .dframe-root .df-session-list,
+html[data-mode="dark"] .dframe-root .df-session-list[data-list-section] {
+  --df-z0: 220.0 16.4% 21.6% !important;
+  --df-z1: 221.7 16.3% 27.6% !important;
+  --df-z2: 220.0 16.1% 18.2% !important;
+  --df-z3: 220.0 16.8% 31.6% !important;
+  --df-z4: 219.2 15.1% 33.7% !important;
+  --df-z5: 220.0 10.2% 53.7% !important;
+  --df-z6: 217.8 18.1% 70.8% !important;
+  --df-bg-page-hsl: 220.0 16.4% 21.6% !important;
+  --df-bg-page: #2e3440 !important;
+  --df-sidebar-bg: #272c36 !important;
+  --df-web-sidebar-bg: #272c36 !important;
+  --df-sidebar-tint: #272c36 !important;
+  --df-sidebar-tint-share: 100% !important;
+  --df-hover: rgba(67, 76, 94, 0.27) !important;
+  --df-selected: #434c5e !important;
+  --df-selected-base: #434c5e !important;
+}
+@media (prefers-color-scheme: dark) {
+  html.cds-root[data-mode="system"],
+  html[data-mode="system"] .cds-root:not([data-mode="light"]):not([data-mode="dark"]) {
+    --cds-surface-0: #272c36 !important;
+    --cds-surface-1: #2e3440 !important;
+    --cds-surface-2: #2e3440 !important;
+    --cds-surface-3: #3b4252 !important;
+    --cds-surface-panel: #2e3440 !important;
+    --cds-surface-popover: #3b4252 !important;
+    --cds-page-bg: #2e3440 !important;
+    --background-color-page: #2e3440 !important;
+    --cds-bg-neutral: rgba(76, 86, 106, 0.08) !important;
+    --cds-bg-neutral-hover: rgba(76, 86, 106, 0.14) !important;
+    --cds-bg-user-message: rgba(136, 192, 208, 0.1) !important;
+    --cds-text-primary: #eceff4 !important;
+    --cds-text-secondary: #bdc3ce !important;
+    --cds-text-muted: #a7b1c2 !important;
+    --cds-border: rgba(76, 86, 106, 0.22) !important;
+    --cds-border-strong: rgba(76, 86, 106, 0.4) !important;
+    --cds-border-stronger: rgba(76, 86, 106, 0.4) !important;
+    --cds-role-accent-400: #88c0d0 !important;
+    --cds-role-accent-450: #8fbcbb !important;
+    --cds-role-accent-600: #88c0d0 !important;
+    --cds-role-accent-on: #2e3440 !important;
+    --cds-on-accent: #2e3440 !important;
+    --cds-text-accent: #88c0d0 !important;
+    --cds-bg-accent: rgba(136, 192, 208, 0.14) !important;
+    --cds-bg-accent-muted: rgba(136, 192, 208, 0.14) !important;
+    --cds-bg-accent-chip: rgba(136, 192, 208, 0.14) !important;
+    --cds-border-accent: #88c0d0 !important;
+    --cds-bg-highlight: rgba(136, 192, 208, 0.14) !important;
+    --cds-fill-field: #2e3440 !important;
+    --cds-alpha-1: rgba(136, 192, 208, 0.07) !important;
+    --cds-alpha-2: rgba(136, 192, 208, 0.12) !important;
+    --cds-alpha-3: rgba(136, 192, 208, 0.18) !important;
+    --cds-fill-ghost-hover: rgba(67, 76, 94, 0.27) !important;
+    --cds-fill-ghost-selected: rgba(67, 76, 94, 0.55) !important;
+    --cds-fill-secondary-hover: rgba(67, 76, 94, 0.27) !important;
+    --cds-fizzy-lake-color-sidebar: #272c36 !important;
+    --cds-fizzy-lake-color-card-hover: #3b4252 !important;
+    --cds-fizzy-lake-color-card-link: rgba(136, 192, 208, 0.04) !important;
+    --cds-fizzy-lake-color-card-link-hover: rgba(136, 192, 208, 0.08) !important;
+    --cds-fizzy-lake-color-card-link-pressed: rgba(136, 192, 208, 0.12) !important;
+    --cds-fizzy-lake-color-selected-hover: rgba(67, 76, 94, 0.7) !important;
+    --bg-000: 220.0 16.4% 21.6% !important;
+    --bg-100: 220.0 16.4% 21.6% !important;
+    --bg-200: 221.7 16.3% 27.6% !important;
+    --bg-300: 220.0 16.1% 18.2% !important;
+    --bg-400: 220.0 16.8% 31.6% !important;
+    --bg-500: 219.2 15.1% 33.7% !important;
+    --text-000: 217.5 26.7% 94.1% !important;
+    --text-100: 217.5 26.7% 94.1% !important;
+    --text-200: 218.8 14.8% 77.5% !important;
+    --text-300: 218.8 14.8% 77.5% !important;
+    --border-300: 219.2 15.1% 33.7% !important;
+    accent-color: #88c0d0 !important;
+  }
+  html[data-mode="system"] .dframe-root,
+  html[data-mode="system"] .dframe-root .dframe-sidebar,
+  html[data-mode="system"] .dframe-root[data-variant] .dframe-sidebar,
+  html[data-mode="system"] .dframe-root .dframe-card,
+  html[data-mode="system"] .dframe-root .df-session-list,
+  html[data-mode="system"] .dframe-root .df-session-list[data-list-section] {
+    --df-z0: 220.0 16.4% 21.6% !important;
+    --df-z1: 221.7 16.3% 27.6% !important;
+    --df-z2: 220.0 16.1% 18.2% !important;
+    --df-z3: 220.0 16.8% 31.6% !important;
+    --df-z4: 219.2 15.1% 33.7% !important;
+    --df-z5: 220.0 10.2% 53.7% !important;
+    --df-z6: 217.8 18.1% 70.8% !important;
+    --df-bg-page-hsl: 220.0 16.4% 21.6% !important;
+    --df-bg-page: #2e3440 !important;
+    --df-sidebar-bg: #272c36 !important;
+    --df-web-sidebar-bg: #272c36 !important;
+    --df-sidebar-tint: #272c36 !important;
+    --df-sidebar-tint-share: 100% !important;
+    --df-hover: rgba(67, 76, 94, 0.27) !important;
+    --df-selected: #434c5e !important;
+    --df-selected-base: #434c5e !important;
+  }
+}
+`;
+  document.getElementById("user-solarized-light-theme")?.remove();
+  let el = document.getElementById(ID);
+  if (!el) {
+    el = document.createElement("style");
+    el.id = ID;
+    document.head.appendChild(el);
+  }
+  el.textContent = css;
+  if (!el.dataset.pinned) {
+    el.dataset.pinned = "1";
+    // Keep the override last in <head> so stylesheets loaded later do not outrank it
+    // (only while it is in the page, so the revert command can remove it).
+    new MutationObserver(() => {
+      if (el.isConnected && document.head.lastElementChild !== el) document.head.appendChild(el);
+    }).observe(document.head, { childList: true });
+  }
+  console.log("[theme] applied", css.length, "chars of CSS");
+})();
+
